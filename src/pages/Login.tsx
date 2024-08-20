@@ -1,5 +1,5 @@
 import { Button, Row } from "antd";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser, TUser } from "../redux/features/auth/authSlice";
@@ -25,7 +25,7 @@ const Login = () => {
     password: "admin123",
   };
 
-  const [login, { isLoading, isError }] = useLoginMutation(undefined);
+  const [login, { isLoading }] = useLoginMutation(undefined);
 
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Logging in");
@@ -48,9 +48,6 @@ const Login = () => {
 
   if (isLoading) {
     return <p>Loading...</p>;
-  }
-  if (isError) {
-    return <p>Error...</p>;
   }
 
   return (
